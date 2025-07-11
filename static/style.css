@@ -1,0 +1,388 @@
+/* Base + Layout (same as before) */
+body {
+    margin: 0;
+    padding: 0.5rem;
+    font-size: 0.875rem; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8fafc;
+    color: #111827;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header, alert, features, etc. (unchanged from your existing code) */
+.header {
+    text-align: center;
+    padding: 0.75rem 0.5rem 0.5rem;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.header p {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-top: 0.25rem;
+}
+
+.alert {
+    margin: 0.5rem auto;
+    background-color: #fef3c7;
+    border: 1px solid #fcd34d;
+    padding: 0.5rem 0.75rem;
+    width: fit-content;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    color: #92400e;
+}
+
+/* Feature Cards (unchanged) */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    width: 220px;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.875rem;
+}
+
+
+.feature-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.feature-card h3 {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+}
+
+/* Upload Form Section (unchanged) */
+.upload-section {
+    background: white;
+    padding: 1.25rem;
+    max-width: 600px;
+    margin: 1rem auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.upload-section form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+    font-size: 0.85rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+input[type="file"],
+textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
+button:hover {
+    background-color: #1e40af;
+    transform: translateY(-1px);
+}
+
+
+button:hover {
+    background-color: #1f2937;
+}
+
+.step {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+/* Loading & Results (unchanged) */
+#loading {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 0.75rem;
+}
+
+#results {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Result sections (unchanged) */
+.result-section {
+    margin-bottom: 1rem;
+}
+
+.result-section ul {
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: red;
+    font-weight: 500;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Suggestions / bullet analysis container */
+.suggestions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.suggestion-box {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 0.85rem;
+}
+
+/* Prevent container overflow horizontally */
+.result-section {
+    overflow-x: auto;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    #results {
+        padding: 0.75rem;
+    }
+    .feature-card {
+        width: 180px;
+    }
+}
+
+
+/* =======================================
+   INFO CARD STYLING for ATS Score, Missing
+   Keywords, Bullet Analysis, etc.
+   ======================================= */
+.info-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #6366f1; /* default purple border */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.info-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #4f46e5; /* purple heading text */
+}
+
+.info-body {
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.4;
+}
+
+/* If you want different colors for different card types, override border color: */
+.info-score {
+  border-left-color: #3b82f6; /* blue */
+}
+.info-missing {
+  border-left-color: #f59e0b; /* yellow */
+}
+.info-bullets {
+  border-left-color: #10b981; /* green */
+}
+.info-sections {
+  border-left-color: #6366f1; /* purple */
+}
+.info-formatting {
+  border-left-color: #ef4444; /* red */
+}
+
+
+/* =========================
+   ANALYSIS CARD STYLING
+   FOR BULLET-BY-BULLET
+   (Same as before)
+   ========================= */
+
+.analysis-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.analysis-header {
+  padding: 0.5rem;
+  background: #f3f4f6; /* mild gray background */
+  border-radius: 0.25rem;
+}
+
+.analysis-header .analysis-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #374151;
+}
+
+.analysis-original {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #1f2937;
+}
+
+.analysis-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Grammar Issues */
+.analysis-grammar {
+  background: #fff7ed; 
+  border-left: 4px solid #fbbf24;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.analysis-grammar .analysis-label {
+  color: #b45309;
+  font-weight: 600;
+}
+
+.grammar-item {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.analysis-grammar-ok {
+  color: #10b981;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Improved block */
+.analysis-improved {
+  background: #ecfdf5;
+  border-left: 4px solid #10b981;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.analysis-improved .analysis-label {
+  color: #065f46;
+  font-weight: 600;
+}
+
+.analysis-improved p {
+  margin: 0.25rem 0 0;
+  color: #065f46;
+}
+
+/* Changes block */
+.analysis-changes {
+  background: #eef2ff; 
+  border-left: 4px solid #6366f1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.analysis-changes .analysis-label {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.analysis-changes p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Increase gap between bullet cards */
+.suggestions-container {
+  gap: 1.5rem;
+}
