@@ -1,0 +1,14 @@
+flask
+pdfplumber
+docx2txt
+spacy
+nltk
+sentence-transformers
+scikit-learn
+gunicorn
+sentencepiece
+language-tool-python
+transformers
+skillNer
+ipython
+protobuf
