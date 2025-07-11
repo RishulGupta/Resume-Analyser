@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Optimizer Pro</title>
+  <style>
+    :root {
+      --space-dark: #0a0e17;
+      --space-blue: #1a2a4a;
+      --neon-blue: #00f0ff;
+      --neon-pink: #ff00f0;
+      --star-white: #f0f8ff;
+      --meteor-gray: #2a3a5a;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: var(--space-dark);
+      color: var(--star-white);
+      font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 240, 0.05) 0%, transparent 20%);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      letter-spacing: 2px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--star-white);
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .alert {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: rgba(255, 0, 240, 0.1);
+      border: 1px solid var(--neon-pink);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--star-white);
+      margin-top: 1rem;
+    }
+    
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
+    
+    .control-panel {
+      background-color: var(--space-blue);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      height: fit-content;
+    }
+    
+    .panel-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--neon-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .panel-title::before {
+      content: ">";
+      color: var(--neon-pink);
+    }
+    
+    .upload-area {
+      margin-bottom: 2rem;
+    }
+    
+    .file-input {
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--meteor-gray);
+      border: 2px dashed rgba(0, 240, 255, 0.3);
+      border-radius: 10px;
+      color: var(--star-white);
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .file-input:hover {
+      border-color: var(--neon-blue);
+      background-color: rgba(0, 240, 255, 0.05);
+    }
+    
+    .job-desc {
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--meteor-gray);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 10px;
+      color: var(--star-white);
+      min-height: 150px;
+      resize: vertical;
+      margin-bottom: 1.5rem;
+    }
+    
+    .analyze-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+      border: none;
+      border-radius: 10px;
+      color: var(--space-dark);
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    }
+    
+    .analyze-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+    }
+    
+    .results-area {
+      background-color: var(--space-blue);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      color: var(--neon-blue);
+    }
+    
+    .results-content {
+      display: none;
+    }
+    
+    .score-display {
+      background-color: var(--meteor-gray);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .score-display::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    }
+    
+    .score-value {
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .analysis-section {
+      margin-bottom: 2rem;
+    }
+    
+    .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--neon-blue);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+    
+    .analysis-card {
+      background-color: var(--meteor-gray);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--neon-blue);
+    }
+    
+    .card-title {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--neon-pink);
+    }
+    
+    .card-content {
+      color: var(--star-white);
+    }
+    
+    .suggestion-item {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid rgba(0, 240, 255, 0.3);
+    }
+    
+    .keyword-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .keyword {
+      background-color: rgba(0, 240, 255, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      border: 1px solid var(--neon-blue);
+    }
+    
+    @media (max-width: 768px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+      
+      .title {
+        font-size: 2rem;
+      }
+    }
+    
+    /* Animation */
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+    
+    .loading::after {
+      content: "...";
+      animation: pulse 1.5s infinite;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">RESUME OPTIMIZER PRO</h1>
+      <p class="subtitle">Maximize your resume's performance in applicant tracking systems</p>
+      <div class="alert">
+        ⚠️ This tool evaluates your resume formatting and content. It does NOT match jobs.
+      </div>
+    </header>
+    
+    <main class="dashboard">
+      <div class="control-panel">
+        <h2 class="panel-title">UPLOAD RESUME</h2>
+        <form id="resumeForm" enctype="multipart/form-data">
+          <div class="upload-area">
+            <input type="file" id="resumeUpload" name="resume" accept=".pdf,.docx" class="file-input">
+          </div>
+          
+          <h2 class="panel-title">JOB DESCRIPTION</h2>
+          <textarea id="jobDescription" placeholder="Paste the job description here for targeted optimization..." class="job-desc"></textarea>
+          
+          <button type="submit" id="analyzeButton" class="analyze-btn">ANALYZE & OPTIMIZE</button>
+        </form>
+      </div>
+      
+      <div class="results-area">
+        <div id="loading" class="loading">
+          SCANNING DOCUMENT
+        </div>
+        
+        <div id="resultsContent" class="results-content">
+          <div class="score-display">
+            <h3>ATS COMPATIBILITY SCORE</h3>
+            <div class="score-value">87</div>
+            <p>Your resume scores well but could be improved with these optimizations:</p>
+          </div>
+          
+          <div class="analysis-section">
+            <h3 class="section-title">KEYWORD ANALYSIS</h3>
+            <div class="analysis-card">
+              <h4 class="card-title">MISSING KEYWORDS</h4>
+              <div class="card-content">
+                <p>These important keywords from the job description are missing from your resume:</p>
+                <div class="keyword-list">
+                  <span class="keyword">Python</span>
+                  <span class="keyword">Machine Learning</span>
+                  <span class="keyword">TensorFlow</span>
+                  <span class="keyword">Data Pipeline</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="analysis-section">
+            <h3 class="section-title">CONTENT SUGGESTIONS</h3>
+            <div class="analysis-card">
+              <h4 class="card-title">BULLET POINT OPTIMIZATION</h4>
+              <div class="card-content">
+                <div class="suggestion-item">
+                  <p><strong>Original:</strong> Managed a team of developers</p>
+                  <p><strong>Improved:</strong> Led a cross-functional team of 5 developers to deliver 3 major product features ahead of schedule, improving customer satisfaction by 32%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
